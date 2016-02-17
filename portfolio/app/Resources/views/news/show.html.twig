@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ news.id }}</td>
+            </tr>
+            <tr>
+                <th>Tekst</th>
+                <td>{{ news.tekst }}</td>
+            </tr>
+            <tr>
+                <th>Data</th>
+                <td>{% if news.date %}{{ news.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Tytuł</th>
+                <td>{{ news.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ news.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="btn btn-default" href="{{ path('admin_news_index') }}">Powrót do listy</a>
+        </li>
+        <li>
+            <a class="btn btn-default" href="{{ path('admin_news_edit', { 'id': news.id }) }}">Edycja</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Usuń">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

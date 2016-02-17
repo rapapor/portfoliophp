@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Kontakt
+            </h1>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class=" glyphicon glyphicon-earphone"></i>Kontakt</h4>
+                </div>
+                <div class="panel-body">
+
+                    <ul>
+                        <li><b>Imię:</b> Adrian</li>
+                        <li><b>Nazwisko:</b> Wiśniewski</li>
+                        <li><b>e-meil:</b> adrian.wisniewski89@gmail.com</li>
+                        <li><b>Telefon:</b>725-079-103</li>
+
+
+                    </ul>
+                    <a href="{{ path('index')}}" class="btn btn-default">Powrót</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

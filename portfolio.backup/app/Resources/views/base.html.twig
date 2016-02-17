@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!--Lytebox -->
+    <script type="text/javascript" language="javascript" src="{{ asset('lytebox_v5.5/lytebox.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('lytebox_v5.5/lytebox.css') }}" type="text/css" media="screen" />
+    <!-- end Lytebox -->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Adrian Wisniewski</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/modern-business.css')}}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+                      <a class="navbar-brand" href="{{ path('index')}}">Adrian Wiśniewski: Demo</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                       <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                        </li>
+                    {% else %}
+
+                        <li>
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        </li>
+                        <li>
+                        <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                            </li>
+
+                          {% endif %}
+
+                    <li>
+                    <a  href="{{ path('news') }}">News</a>
+                    </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Header Carousel -->
+<header id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url({{ asset('img/lion-hd-wallpapers.jpeg')}})"/></div>
+            <div class="carousel-caption">
+                <h1>Lion</h1>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url({{ asset('img/narnia_lion_aslan-3840x2160.jpg')}})"/></div>
+            <div class="carousel-caption">
+                <h2>Roar</h2>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url({{ asset('img/130435_mis-panda-liscie.jpg') }}"/></div>
+            <div class="carousel-caption">
+                <h2>Panda</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</header>
+{% block all %}
+<!-- Page Content -->
+<div class="container">
+
+    {% block header %}
+    {% endblock header %}
+
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}{% block body %}
+    {% block content %}
+
+        <!-- Marketing Icons Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Informacje
+            </h1>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-check"></i>Znane mi technologie</h4>
+                </div>
+                <div class="panel-body">
+
+                        <ul>
+                        <li>Symfony2</li>
+                        <li>Doctrine</li>
+                        <li>PHP5</li>
+                        <li>Bootstrap</li>
+                        <li>Git</li>
+                        <li>Wielojęzyczne aplikacje w Symfony2</li>
+                        <li>MySql</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Skrypty Bash</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-gift"></i>Dlaczego programowanie?</h4>
+                </div>
+                <div class="panel-body">
+                    <p>Witajcie na mojej stronie demonstracyjnej.
+                        Nazywam się Wiśniewski Adrian, jestem studentem I roku studiów niestacjonarnych na kierunku Informatyka. Moim celem jest zostać programistą.Z programowaniem pierwszy kontakt miałem już w Technikum również o kierunku informatycznym. Programować zacząłem około rok temu, uważam że jest to idealna praca dla mnie, która sprawia mi wiele satysfakcji. Cały czas się w tym doskonale i poznaje nowe technologie.Z programowaniem wiążę swoją przyszłą karierę zawodową. W tym celu napisałem własną stronę demonstracyjną w której przedstawiam moje umiejętności oraz znane mi technologie.</p>
+                </div>
+            </div>
+        </div>
+        {% block news %}
+
+        {% endblock news %}
+
+    </div>
+    <!-- /.row -->
+
+    <!-- Portfolio Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Galeria</h2>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ asset('img/slon-afrykanski7.jpg') }}" class="lytebox"
+               data-lyte-options="group:animals" data-title="Slon">
+                <img class="img-responsive img-portfolio img-hover" src="{{ asset('img/slon-afrykanski7.jpg') }}" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ asset('img/14091010-biały-tygrys-na-skale-przez-wodzie.jpg') }}" class="lytebox"
+               data-lyte-options="group:animals" data-title="Btygrys">
+                <img class="img-responsive img-portfolio img-hover" src="{{ asset('img/14091010-biały-tygrys-na-skale-przez-wodzie.jpg') }}" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ asset('img/ryby-rafa-delfiny.jpeg') }}" class="lytebox"
+               data-lyte-options="group:animals" data-title="Delfiny">
+                <img class="img-responsive img-portfolio img-hover" src="{{ asset('img/ryby-rafa-delfiny.jpeg') }}" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ asset('img/ara.jpeg') }}" class="lytebox"
+               data-lyte-options="group:animals" data-title="Papuga">
+                <img class="img-responsive img-portfolio img-hover" src="{{ asset('img/ara.jpeg') }}" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ asset('img/Tygrys-bengalski8.jpg') }}" class="lytebox"
+               data-lyte-options="group:animals" data-title="Tygrys">
+                <img class="img-responsive img-portfolio img-hover" src="{{ asset('img/Tygrys-bengalski8.jpg') }}" alt="">
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ asset('img/wilk-nieg-6.jpeg') }}" class="lytebox"
+               data-lyte-options="group:animals" data-title="Wilk">
+                <img class="img-responsive img-portfolio img-hover" src="{{ asset('img/wilk-nieg-6.jpeg') }}" alt="">
+            </a>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Features Section -->
+    <div class="row">
+        <div class="col-lg-12">
+
+
+        </div>
+        <div class="col-md-6">
+
+
+
+
+            <div>
+
+            </div>
+        </div>
+            </div>
+    <!-- /.row -->
+    {% endblock content %}{% endblock body %}
+    <hr>
+
+    <!-- Call to Action Section -->
+    <div class="well">
+        <div class="row">
+            <div class="col-md-8">
+                <p>Spodobała Ci się moja strona? Przycisk kontakt jest dla Ciebie</p>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-default btn-block" href="{{ path('kontakt')}}">Kontakt</a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    {% endblock all %}
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Adrian Wiśniewski 2016</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="{{ asset('js/jquery.js')}}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('js/bootstrap.min.js')}}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+

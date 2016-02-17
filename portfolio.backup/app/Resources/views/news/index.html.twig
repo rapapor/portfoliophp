@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tekst</th>
+                <th>Data</th>
+                <th>Tytuł</th>
+                <th>Slug</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for news in news %}
+            <tr>
+                <td><a href="{{ path('admin_news_show', { 'id': news.id }) }}">{{ news.id }}</a></td>
+                <td>{{ news.tekst }}</td>
+                <td>{% if news.date %}{{ news.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ news.title }}</td>
+                <td>{{ news.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="btn btn-default" href="{{ path('admin_news_show', { 'id': news.id }) }}">Więcej</a>
+                        </li>
+                        <li>
+                            <a class="btn btn-default" href="{{ path('admin_news_edit', { 'id': news.id }) }}">Edycja</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="btn btn-default" href="{{ path('admin_news_new') }}">Utwórz nowy news</a>
+        </li>
+    </ul>
+{% endblock %}
+
+

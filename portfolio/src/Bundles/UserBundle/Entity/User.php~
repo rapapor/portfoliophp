@@ -1,0 +1,236 @@
+<?php
+
+namespace Bundles\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="Bundles\UserBundle\Repository\UserRepository")
+ */
+class User
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=255)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Login", type="string", length=255, unique=true)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="e_mail", type="string", length=255, nullable=true, unique=true)
+     */
+    private $eMail;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return User
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return User
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set eMail
+     *
+     * @param string $eMail
+     *
+     * @return User
+     */
+    public function setEMail($eMail)
+    {
+        $this->eMail = $eMail;
+
+        return $this;
+    }
+
+    /**
+     * Get eMail
+     *
+     * @return string
+     */
+    public function getEMail()
+    {
+        return $this->eMail;
+    }
+
+
+  /**
+   * @ORM\OneToMany(targetEntity="Foto", mappedBy="User")
+   */
+    protected $foto;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->foto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add foto
+     *
+     * @param \Bundles\UserBundle\Entity\Foto $foto
+     *
+     * @return User
+     */
+    public function addFoto(\Bundles\UserBundle\Entity\Foto $foto)
+    {
+        $this->foto[] = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Remove foto
+     *
+     * @param \Bundles\UserBundle\Entity\Foto $foto
+     */
+    public function removeFoto(\Bundles\UserBundle\Entity\Foto $foto)
+    {
+        $this->foto->removeElement($foto);
+    }
+
+    /**
+     * Get foto
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+}

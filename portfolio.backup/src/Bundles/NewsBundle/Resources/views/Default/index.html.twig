@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+
+{% block news %}
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="glyphicon glyphicon-pencil"></i>Ostatnio dodany news</h4>
+
+
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tbody>
+
+                    <tr>
+                        <b>
+                        {{ news.title }}
+                            </b>
+                        <br>
+                        {{ news.tekst }}
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock news %}

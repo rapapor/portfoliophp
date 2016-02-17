@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+<h2>Imiona</h2>
+
+<ul>
+    {% for imie in entities %}
+    <li>
+        {{ imie.caption }}
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
